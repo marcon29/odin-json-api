@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'awesome_print'
+  gem 'rest-client'
 end
 
 group :development do

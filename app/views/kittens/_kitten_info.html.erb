@@ -1,0 +1,18 @@
+<% if action_name == "index" %>
+    <h3><%= link_to kitten.name, kitten_path(kitten) %></h3>
+<% else %>
+    <h3><%= kitten.name %></h3>
+<% end %>
+
+<p>Age: <%= kitten.age %></p>
+<p>Cuteness: <%= kitten.cuteness %></p>
+<p>Softness: <%= kitten.softness %></p>
+
+<p>
+    <%= link_to "Edit", edit_kitten_path(kitten) %> 
+    &nbsp &nbsp | &nbsp &nbsp 
+    <%= link_to "Delete", kitten, method: :delete, data: { confirm: "Are you sure?" } %>
+</p>
+<% if action_name == "index" %>
+    <hr>
+<% end %>

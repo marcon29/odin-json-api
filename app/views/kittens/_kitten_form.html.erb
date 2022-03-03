@@ -1,0 +1,51 @@
+<p>
+    <%= link_to "Back to All Kittens", kittens_path %> 
+    <% if action_name == "edit" %>
+        &nbsp &nbsp | &nbsp &nbsp 
+        <%= link_to "Back to #{@kitten.name}", kitten_path(@kitten) %> 
+    <% end %>
+</p>
+<hr>
+
+<% if @kitten.errors.any? %>
+    <% emsg = {} %>
+    <% @kitten.errors.messages.each do |attr, msg| %>
+        <% emsg[attr] = msg if attr %>
+    <% end %>
+<% end %>
+
+<section>
+    <%= form_for @kitten do |f| %>
+        <div class="form-field-group">
+            <%= f.label :name, "Name" %>
+            <%= f.text_field :name %>
+        </div>
+        <%= (tag.p emsg[:name].first, class: "small-text red-text") if emsg && emsg[:name] %>
+
+        <div class="form-field-group">
+            <%= f.label :name, "Age" %>
+            <%= f.number_field :age %>
+        </div>
+        <%= (tag.p emsg[:age].first, class: "small-text red-text") if emsg && emsg[:age] %>
+
+        <div class="form-field-group">
+            <%= f.label :cuteness, "Cuteness" %>
+            <%= f.number_field :cuteness %>
+        </div>
+        <%= (tag.p emsg[:cuteness].first, class: "small-text red-text") if emsg && emsg[:cuteness] %>
+
+        <div class="form-field-group">
+            <%= f.label :softness, "Softness" %>
+            <%= f.number_field :softness %>
+        </div>
+        <%= (tag.p emsg[:softness].first, class: "small-text red-text") if emsg && emsg[:softness] %>
+        
+        <%= f.submit %>
+    <% end %>
+</section>
+
+<% if action_name == "edit" %>
+    <p><%= link_to "Delete", @kitten, method: :delete, data: { confirm: "Are you sure?" } %></p>
+<% end %>
+
+
